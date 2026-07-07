@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassaan-hub | Full-Stack & Firebase Developer Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Hassaan-hub, an aspiring Full-Stack Web Developer and Firebase Developer from Pakistan. Specializing in modern web applications, Firebase Auth, Firestore, and interactive UI/UX.">
+    <!-- Open Graph tags for social preview -->
+    <meta property="og:title" content="Hassaan-hub | Full-Stack & Firebase Developer Portfolio">
+    <meta property="og:description"
+        content="Explore projects, skills, and experience of Hassaan-hub. Student and Web Developer building clean, high-performance web applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Gradient Glows -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">&lt;</span>Hassaan<span class="logo-accent">.dev /&gt;</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle visual theme">
+                    <!-- Sun Icon (for light mode option) -->
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path
+                            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+                        </path>
+                    </svg>
+                    <!-- Moon Icon (for dark mode option) -->
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle mobile navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section hero" id="home">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="badge">Available for Projects</div>
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="text-gradient">Hassaan-hub</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        I am an <span class="typewriter-text" id="typewriter"></span><span class="cursor-blink">|</span>
+                    </h2>
+                    <p class="hero-description">
+                        Building responsive web applications from Pakistan with modern technologies. Specializing in
+                        JavaScript frontend interfaces and scalable Firebase backend systems.
+                    </p>
+                    <div class="hero-ctas">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <!-- The CV download triggers a clean print-friendly CV window -->
+                        <button id="download-cv" class="btn btn-secondary">
+                            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+                            </svg>
+                            Download CV / Print Resume
+                        </button>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+                            aria-label="GitHub Profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                                </path>
+                                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+                            aria-label="LinkedIn Profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="hassaanali994@gmail.com" class="social-icon-btn" aria-label="Email Address">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-blob-wrapper">
+                        <!-- Abstract Dev Tech Floating Illustration instead of empty placeholder -->
+                        <div class="tech-stack-graphic">
+                            <div class="graphic-node html-node" data-label="HTML">HTML</div>
+                            <div class="graphic-node css-node" data-label="CSS">CSS</div>
+                            <div class="graphic-node js-node" data-label="JS">JS</div>
+                            <div class="graphic-node db-node" data-label="Firebase">Firebase</div>
+                            <div class="graphic-center">
+                                <span class="code-bracket">{</span>
+                                <span class="code-slash">&lt;/&gt;</span>
+                                <span class="code-bracket">}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#about" class="scroll-down-indicator" aria-label="Scroll to About Section">
+                <span class="mouse-wheel"></span>
+            </a>
+        </section>
+        <!-- About Me Section -->
+        <section class="section about" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle text-gradient">Discover</span>
+                    <h2 class="title">About Me</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-info">
+                        <h3>Passionate Developer & Academic Student</h3>
+                        <p>
+                            I am a student currently in my **1st Year (Intermediate)** under the **Sindh Board** in
+                            Pakistan, specializing in **Computer Science and Pre-Engineering**. Combining my academic
+                            background with my coding passion, I specialize in building modern, interactive, and
+                            responsive web applications.
+                        </p>
+                        <p>
+                            My development journey is driven by curiosity and problem-solving. I love turning clean code
+                            into beautiful, functional user interfaces and leveraging robust cloud backend
+                            infrastructure, specifically **Firebase**, to build data-driven systems.
+                        </p>
+                        <div class="stats-row">
+                            <div class="stat-card">
+                                <span class="stat-num text-gradient">CS & Pre-Eng</span>
+                                <span class="stat-desc">Intermediate (Sindh Board)</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-num text-gradient">Firebase</span>
+                                <span class="stat-desc">Authentication & Firestore</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-num text-gradient">100%</span>
+                                <span class="stat-desc">Responsive Layouts</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-cards-container">
+                        <div class="card glass-card feature-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                            </div>
+                            <h4>Academic Background</h4>
+                            <p>Balancing high school studies with rigorous self-taught web engineering and computational
+                                problem-solving.</p>
+                        </div>
+                        <div class="card glass-card feature-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z">
+                                    </path>
+                                    <path d="m12 8-4 4h8z"></path>
+                                </svg>
+                            </div>
+                            <h4>Aspiring Full-Stack</h4>
+                            <p>Developing strong capabilities on both the frontend visual layer and backend real-time
+                                database integrations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="section skills" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle text-gradient">My Toolkit</span>
+                    <h2 class="title">Technical Skills</h2>
+                    <div class="underline"></div>
+                </div>
+
+                <div class="skills-wrapper">
+                    <!-- Tech Grid -->
+                    <div class="skills-grid">
+                        <!-- Frontend Skills -->
+                        <div class="skills-category-card glass-card">
+                            <div class="category-header">
+                                <svg class="cat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                                    <line x1="8" x2="16" y1="21" y2="21"></line>
+                                    <line x1="12" x2="12" y1="17" y2="21"></line>
+                                </svg>
+                                <h3>Frontend Development</h3>
+                            </div>
+                            <div class="skill-items">
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>HTML5 & Semantic Markup</span>
+                                        <span>95%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>CSS3 & Modern Layouts (Grid/Flex)</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>JavaScript (ES6+) & DOM APIs</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Responsive & Mobile-First Web Design</span>
+                                        <span>95%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Backend & Firebase -->
+                        <div class="skills-category-card glass-card">
+                            <div class="category-header">
+                                <svg class="cat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                    <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                                    <path d="M3 12A9 3 0 0 0 21 12"></path>
+                                </svg>
+                                <h3>Firebase & Serverless Backend</h3>
+                            </div>
+                            <div class="skill-items">
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Firebase Authentication</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Cloud Firestore (NoSQL DB Rules)</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Firebase Hosting & Deployment</span>
+                                        <span>88%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tools & Practices -->
+                        <div class="skills-category-card glass-card">
+                            <div class="category-header">
+                                <svg class="cat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                                    </path>
+                                </svg>
+                                <h3>Tools & Best Practices</h3>
+                            </div>
+                            <div class="skill-items">
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Git & GitHub (Version Control)</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Web Application Development</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar-wrapper">
+                                    <div class="skill-info-labels">
+                                        <span>Chrome DevTools & Debugging</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="section projects" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle text-gradient">My Work</span>
+                    <h2 class="title">Featured Projects</h2>
+                    <div class="underline"></div>
+                </div>
+                <!-- Projects Filter Controls -->
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="firebase">Firebase Apps</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                </div>
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Project 1: Helplytics AI -->
+                    <div class="project-card glass-card" data-category="firebase">
+                        <div class="project-header">
+                            <span class="project-badge">Firebase + AI</span>
+                            <h3>Helplytics AI</h3>
+                        </div>
+                        <p class="project-description">
+                            An AI-powered web analytics and assistant dashboard. Integrated with Google Gemini models
+                            using custom API gateways, displaying dynamic customer metrics and automated support
+                            analytics.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Firebase</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Helplytics AI Github Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                                    </path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link" aria-label="Helplytics AI Live Demo Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                    </path>
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project 2: Firebase Auth & Firestore Platform -->
+                    <div class="project-card glass-card" data-category="firebase">
+                        <div class="project-header">
+                            <span class="project-badge">NoSQL Backend</span>
+                            <h3>Auth & Firestore App</h3>
+                        </div>
+                        <p class="project-description">
+                            A secure dashboard application implementing standard Firebase Auth (Email/Password, Google
+                            Sign-in) alongside custom client-side routes. Features real-time multi-user document
+                            collaboration synced instantly with Cloud Firestore.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span>JS (ES6)</span>
+                            <span>Firebase Auth</span>
+                            <span>Firestore</span>
+                            <span>Hosting</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Auth & Firestore App Github Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                                    </path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link" aria-label="Auth & Firestore App Live Demo Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                    </path>
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project 3: Responsive Interactive Web Projects -->
+                    <div class="project-card glass-card" data-category="web">
+                        <div class="project-header">
+                            <span class="project-badge">Responsive UI</span>
+                            <h3>Custom Frontend UI Lab</h3>
+                        </div>
+                        <p class="project-description">
+                            A curated suite of modern layouts focusing on advanced CSS Flexbox/Grid systems, media
+                            queries, mobile touch gestures, custom animations, and responsive interactions optimized
+                            specifically for mobile screens.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span>HTML5</span>
+                            <span>CSS3 (Custom Vars)</span>
+                            <span>Vanilla JS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Custom Frontend UI Lab Github Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                                    </path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link" aria-label="Custom Frontend UI Lab Live Demo Link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                    </path>
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Education Section -->
+        <section class="section education" id="education">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle text-gradient">Qualifications</span>
+                    <h2 class="title">My Education</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="timeline">
+                    <!-- Timeline Card 1 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date">2025 - Present</span>
+                            <h3>Intermediate (HSSC) - 1st Year</h3>
+                            <p class="timeline-org">Sindh Board of Intermediate Education, Karachi</p>
+                            <p class="timeline-description">
+                                Specialized in **Computer Science & Pre-Engineering**. Core coursework includes advanced
+                                mathematics, physics, logic building, computational structures, and computer
+                                architectures.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Timeline Card 2 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-date">Completed 2025</span>
+                            <h3>Secondary School Certificate (Matriculation)</h3>
+                            <p class="timeline-org">Board of Secondary Education, Karachi</p>
+                            <p class="timeline-description">
+                                Formally educated in Computer Science electives. Developed a solid base in algorithmic
+                                layouts, elementary algebra, and standard logical operations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="section contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle text-gradient">Get In Touch</span>
+                    <h2 class="title">Contact Me</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="contact-grid">
+                    <!-- Contact Information -->
+                    <div class="contact-info-panel glass-card">
+                        <h3>Connect With Me</h3>
+                        <p>Let's build something amazing together! Reach out to me via email or phone, or send me a
+                            direct message through the form.</p>
+
+                        <div class="contact-methods">
+                            <!-- Email -->
+                            <div class="contact-method-card">
+                                <div class="method-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                    </svg>
+                                </div>
+                                <div class="method-details">
+                                    <span>Email Me</span>
+                                    <a href="mailto:hassaanali994@gmail.com">hassaanali994@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="contact-method-card">
+                                <div class="method-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="method-details">
+                                    <span>Call / WhatsApp</span>
+                                    <a href="tel:+923273843438">+92 (327) 384-3438</a>
+                                </div>
+                            </div>
+                            <!-- Location -->
+                            <div class="contact-method-card">
+                                <div class="method-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div class="method-details">
+                                    <span>Location</span>
+                                    <p>Karachi, Pakistan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contact Form -->
+                    <div class="contact-form-panel glass-card">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5"
+                                    placeholder="Let's talk about our next project..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span class="btn-text">Send Message</span>
+                                <svg class="btn-spinner" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
+                                        stroke-dasharray="45" stroke-dashoffset="0"></circle>
+                                </svg>
+                            </button>
+                            <div class="form-feedback" id="form-feedback"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <span class="logo-accent">&lt;</span>Hassaan-hub<span class="logo-accent">.dev /&gt;</span>
+            </div>
+            <p class="footer-credit">
+                Designed & Built with ❤️ by <span class="text-gradient">Hassaan-hub</span>.
+            </p>
+            <p class="footer-meta">&copy; 2026 Hassaan-hub. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Print CV Layout (Hidden on Screen, Active only when triggering Print/Download CV) -->
+    <div class="print-cv-container" id="print-cv-container">
+        <div class="print-cv-header">
+            <div>
+                <h1>HASSAAN-HUB</h1>
+                <p class="cv-subtitle">Aspiring Full-Stack Web Developer & Firebase Developer</p>
+            </div>
+            <div class="cv-contact-details">
+                <p><strong>Email:</strong> hassaanali994@gmail.com</p>
+                <p><strong>Phone:</strong> +92 (327) 384-3438</p>
+                <p><strong>Location:</strong> Karachi, Pakistan</p>
+                <p><strong>GitHub:</strong> github.com/Hassaan-hub</p>
+            </div>
+        </div>
+
+        <hr class="cv-divider">
+
+        <div class="print-cv-section">
+            <h2>SUMMARY</h2>
+            <p>
+                I am a passionate student and web developer from Pakistan who loves building modern web applications and
+                learning new technologies. I enjoy solving problems, creating user-friendly interfaces, and working on
+                real-world projects. I combine front-end HTML/CSS/JS expertise with back-end Firebase implementations.
+            </p>
+        </div>
+        <div class="print-cv-section">
+            <h2>EDUCATION</h2>
+            <div class="cv-item">
+                <div class="cv-item-title-row">
+                    <strong>Intermediate (HSSC) - Computer Science & Pre-Engineering</strong>
+                    <span>2025 - Present</span>
+                </div>
+                <p class="cv-item-org">Sindh Board of Intermediate Education, Karachi</p>
+            </div>
+            <div class="cv-item">
+                <div class="cv-item-title-row">
+                    <strong>Secondary School Certificate (Matriculation) - Computer Science</strong>
+                    <span>Completed 2025</span>
+                </div>
+                <p class="cv-item-org">Board of Secondary Education, Karachi</p>
+            </div>
+        </div>
+        <div class="print-cv-section">
+            <h2>CORE SKILLS</h2>
+            <p><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), DOM APIs, Responsive Design, CSS Grid &
+                Flexbox</p>
+            <p><strong>Backend & Cloud:</strong> Firebase Authentication, Cloud Firestore (NoSQL), Firebase Hosting</p>
+            <p><strong>Tools:</strong> Git, GitHub, Chrome DevTools, Terminal Workflow</p>
+        </div>
+        <div class="print-cv-section">
+            <h2>FEATURED PROJECTS</h2>
+            <div class="cv-item">
+                <div class="cv-item-title-row">
+                    <strong>Helplytics AI</strong>
+                    <span>Firebase + AI Integration</span>
+                </div>
+                <p>An AI-powered web analytics and assistant dashboard. Integrated with Google Gemini models, Cloud
+                    Firestore for data persistence, and Firebase Auth for securing dashboards.</p>
+            </div>
+            <div class="cv-item">
+                <div class="cv-item-title-row">
+                    <strong>Firebase Authentication & Collaborative Firestore Dashboard</strong>
+                    <span>Full Backend Integration</span>
+                </div>
+                <p>Created real-time document synchronization and robust user authentication routes leveraging Cloud
+                    Firestore triggers and rules.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
