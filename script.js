@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================================================
-    // Theme Switcher (Dark / Light Mode)
-    // ==========================================================================
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
     
