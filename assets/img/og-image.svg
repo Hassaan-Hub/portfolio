@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+    aria-label="Muhammad Hassaan - Frontend Developer">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#080d17" />
+            <stop offset="100%" stop-color="#0c1729" />
+        </linearGradient>
+        <linearGradient id="a" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#22d3ee" />
+        </linearGradient>
+        <pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.03" />
+        </pattern>
+    </defs>
+    <rect width="1200" height="630" fill="url(#bg)" />
+    <rect width="1200" height="630" fill="url(#g)" />
+    <circle cx="1080" cy="80" r="240" fill="#3b82f6" opacity="0.16" />
+    <circle cx="80" cy="600" r="200" fill="#22d3ee" opacity="0.10" />
+
+    <text x="80" y="120" font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="700"
+        fill="url(#a)">&lt;Hassaan.dev /&gt;</text>
+    <text x="80" y="290" font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif" font-size="82" font-weight="800"
+        fill="#f8fafc">Muhammad Hassaan</text>
+    <text x="80" y="366" font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="600"
+        fill="#94a3b8">Frontend Developer</text>
+    <rect x="80" y="404" width="560" height="4" rx="2" fill="url(#a)" opacity="0.5" />
+    <text x="80" y="466" font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif" font-size="30" fill="#cbd5e1">React  •  Next.js  •  JavaScript  •  Firebase</text>
+    <text x="80" y="528" font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif" font-size="24" fill="#64748b">hassaan-tau.vercel.app  •  Karachi, Pakistan</text>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img"
+    aria-label="SetTube video platform cover">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0b1220" />
+            <stop offset="100%" stop-color="#101a2c" />
+        </linearGradient>
+        <linearGradient id="a" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#22d3ee" />
+        </linearGradient>
+        <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.035" />
+        </pattern>
+    </defs>
+    <rect width="1200" height="750" fill="url(#bg)" />
+    <rect width="1200" height="750" fill="url(#g)" />
+    <circle cx="1090" cy="100" r="200" fill="#ef4444" opacity="0.09" />
+    <circle cx="90" cy="680" r="170" fill="#22d3ee" opacity="0.08" />
+
+    <rect x="70" y="70" width="1060" height="610" rx="18" fill="#0f172a" stroke="#1e293b" />
+    <path d="M70 168h1060" stroke="#1e293b" />
+
+    <rect x="102" y="112" width="34" height="24" rx="7" fill="#ef4444" opacity="0.85" />
+    <path d="M114 118 L126 124 L114 130 Z" fill="#0b1220" />
+    <rect x="148" y="118" width="86" height="12" rx="6" fill="url(#a)" />
+
+    <rect x="286" y="104" width="420" height="40" rx="20" fill="#0c1524" stroke="#1e293b" />
+    <circle cx="316" cy="124" r="8" fill="none" stroke="#3d5170" stroke-width="2" />
+    <path d="M322 130 L328 136" stroke="#3d5170" stroke-width="2" stroke-linecap="round" />
+    <rect x="342" y="120" width="180" height="9" rx="4.5" fill="#243349" />
+    <g>
+        <rect x="726" y="112" width="52" height="24" rx="12" fill="#1e3a5f" />
+        <rect x="794" y="112" width="52" height="24" rx="12" fill="#1e3a5f" />
+        <rect x="862" y="112" width="52" height="24" rx="12" fill="#1e3a5f" />
+        <rect x="930" y="112" width="52" height="24" rx="12" fill="#1e3a5f" />
+    </g>
+    <circle cx="1046" cy="122" r="16" fill="#1b2942" />
+
+    <rect x="102" y="196" width="560" height="314" rx="16" fill="#101c30" stroke="#1e293b" />
+    <rect x="102" y="196" width="560" height="314" rx="16" fill="url(#a)" opacity="0.08" />
+    <path d="M348 316 L406 352 L348 388 Z" fill="#0b1220" />
+    <circle cx="348" cy="352" r="44" fill="none" stroke="url(#a)" stroke-width="3" opacity="0.55" />
+    <rect x="126" y="222" width="94" height="10" rx="5" fill="#2f4463" opacity="0.7" />
+    <rect x="130" y="466" width="420" height="11" rx="5.5" fill="#2b3a52" />
+    <rect x="130" y="486" width="260" height="8" rx="4" fill="#1f2c42" />
+
+    <g>
+        <rect x="686" y="196" width="200" height="112" rx="12" fill="#0c1524" stroke="#1e293b" />
+        <path d="M778 236 L806 252 L778 268 Z" fill="#0b1220" />
+        <rect x="700" y="292" width="132" height="8" rx="4" fill="#243349" />
+
+        <rect x="902" y="196" width="200" height="112" rx="12" fill="#0c1524" stroke="#1e293b" />
+        <path d="M994 236 L1022 252 L994 268 Z" fill="#0b1220" />
+        <rect x="916" y="292" width="112" height="8" rx="4" fill="#243349" />
+
+        <rect x="686" y="330" width="200" height="112" rx="12" fill="#0c1524" stroke="#1e293b" />
+        <path d="M778 370 L806 386 L778 402 Z" fill="#0b1220" />
+        <rect x="700" y="426" width="146" height="8" rx="4" fill="#243349" />
+
+        <rect x="902" y="330" width="200" height="112" rx="12" fill="#0c1524" stroke="#1e293b" />
+        <path d="M994 370 L1022 386 L994 402 Z" fill="#0b1220" />
+        <rect x="916" y="426" width="104" height="8" rx="4" fill="#243349" />
+    </g>
+
+    <g>
+        <rect x="102" y="546" width="316" height="98" rx="14" fill="#101c30" stroke="#1e293b" />
+        <rect x="122" y="564" width="84" height="62" rx="10" fill="#0c1524" stroke="#1e293b" />
+        <path d="M158 586 L174 595 L158 604 Z" fill="#0b1220" />
+        <rect x="220" y="572" width="150" height="9" rx="4.5" fill="#2b3a52" />
+        <rect x="220" y="590" width="104" height="7" rx="3.5" fill="#1f2c42" />
+        <rect x="220" y="610" width="60" height="16" rx="8" fill="#3b82f6" opacity="0.22" />
+
+        <rect x="442" y="546" width="316" height="98" rx="14" fill="#101c30" stroke="#1e293b" />
+        <rect x="462" y="564" width="84" height="62" rx="10" fill="#0c1524" stroke="#1e293b" />
+        <path d="M498 586 L514 595 L498 604 Z" fill="#0b1220" />
+        <rect x="560" y="572" width="164" height="9" rx="4.5" fill="#2b3a52" />
+        <rect x="560" y="590" width="92" height="7" rx="3.5" fill="#1f2c42" />
+        <rect x="560" y="610" width="60" height="16" rx="8" fill="#22d3ee" opacity="0.2" />
+
+        <rect x="782" y="546" width="320" height="98" rx="14" fill="#101c30" stroke="#1e293b" stroke-dasharray="7 6" />
+        <rect x="802" y="564" width="84" height="62" rx="10" fill="#0c1524" stroke="#1e293b" stroke-dasharray="6 5" />
+        <path d="M838 586 L854 595 L838 604 Z" fill="#0b1220" opacity="0.55" />
+        <rect x="900" y="572" width="132" height="9" rx="4.5" fill="#243349" />
+        <rect x="900" y="590" width="88" height="7" rx="3.5" fill="#1b2637" />
+        <rect x="900" y="608" width="132" height="18" rx="9" fill="none" stroke="url(#a)" stroke-opacity="0.45"
+            stroke-dasharray="5 4" />
+    </g>
+
+    <g>
+        <rect x="102" y="60" width="146" height="30" rx="15" fill="#0b1220" stroke="url(#a)" stroke-opacity="0.5" />
+        <circle cx="122" cy="75" r="5" fill="#22d3ee" />
+        <text x="138" y="80" font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif"
+            font-size="15" font-weight="700" letter-spacing="1.6" fill="#7dd3fc">IN DEVELOPMENT</text>
+    </g>
+    <text x="1098" y="80" text-anchor="end"
+        font-family="Outfit, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif" font-size="20"
+        font-weight="700" fill="#94a3b8">SetTube</text>
+</svg>

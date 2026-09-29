@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img"
+    aria-label="Todo application cover">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0b1220" />
+            <stop offset="100%" stop-color="#101a2c" />
+        </linearGradient>
+        <linearGradient id="a" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#a78bfa" />
+        </linearGradient>
+        <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.035" />
+        </pattern>
+    </defs>
+    <rect width="1200" height="750" fill="url(#bg)" />
+    <rect width="1200" height="750" fill="url(#g)" />
+    <circle cx="1080" cy="100" r="200" fill="#6366f1" opacity="0.12" />
+    <circle cx="100" cy="680" r="170" fill="#a78bfa" opacity="0.08" />
+
+    <rect x="70" y="70" width="1060" height="610" rx="18" fill="#0f172a" stroke="#1e293b" />
+    <path d="M70 168h1060" stroke="#1e293b" />
+
+    <rect x="102" y="106" width="40" height="32" rx="10" fill="url(#a)" opacity="0.85" />
+    <path d="M113 122 L120 129 L132 115" fill="none" stroke="#0b1220" stroke-width="3.4" stroke-linecap="round"
+        stroke-linejoin="round" />
+    <rect x="154" y="114" width="150" height="14" rx="7" fill="#2b3a52" />
+    <rect x="154" y="132" width="96" height="8" rx="4" fill="#1f2c42" />
+
+    <rect x="700" y="110" width="120" height="24" rx="12" fill="#1e3a5f" />
+    <rect x="836" y="110" width="120" height="24" rx="12" fill="#1e3a5f" />
+    <circle cx="1030" cy="122" r="17" fill="#1b2942" />
+
+    <g>
+        <rect x="102" y="198" width="298" height="80" rx="14" fill="#101c30" stroke="#1e293b" />
+        <text x="251" y="248" text-anchor="middle" font-family="Outfit, Segoe UI, system-ui, sans-serif"
+            font-size="30" font-weight="700" fill="#e2e8f0">12</text>
+        <rect x="146" y="258" width="52" height="8" rx="4" fill="#243349" />
+
+        <rect x="416" y="198" width="298" height="80" rx="14" fill="#101c30" stroke="#1e293b" />
+        <text x="565" y="248" text-anchor="middle" font-family="Outfit, Segoe UI, system-ui, sans-serif"
+            font-size="30" font-weight="700" fill="#fbbf24">5</text>
+        <rect x="486" y="258" width="62" height="8" rx="4" fill="#243349" />
+
+        <rect x="730" y="198" width="372" height="80" rx="14" fill="#101c30" stroke="#1e293b" />
+        <text x="916" y="248" text-anchor="middle" font-family="Outfit, Segoe UI, system-ui, sans-serif"
+            font-size="30" font-weight="700" fill="#4ade80">7</text>
+        <rect x="866" y="258" width="50" height="8" rx="4" fill="#243349" />
+    </g>
+
+    <rect x="102" y="302" width="1000" height="56" rx="14" fill="#101c30" stroke="#1e293b" />
+    <rect x="102" y="302" width="1000" height="56" rx="14" fill="url(#a)" opacity="0.07" />
+    <rect x="124" y="322" width="420" height="16" rx="8" fill="#243349" />
+    <rect x="852" y="316" width="120" height="30" rx="10" fill="url(#a)" opacity="0.75" />
+    <rect x="992" y="316" width="88" height="30" rx="10" fill="none" stroke="#334155" />
+
+    <g>
+        <rect x="102" y="378" width="1000" height="62" rx="12" fill="#0e1728" stroke="#1e293b" />
+        <rect x="102" y="378" width="5" height="62" rx="2.5" fill="url(#a)" />
+        <circle cx="140" cy="409" r="11" fill="none" stroke="#3d5170" stroke-width="2.4" />
+        <rect x="170" y="403" width="300" height="12" rx="6" fill="#2b3a52" />
+        <rect x="1000" y="399" width="18" height="18" rx="5" fill="#1f2c42" />
+        <rect x="1036" y="399" width="18" height="18" rx="5" fill="#1f2c42" />
+
+        <rect x="102" y="450" width="1000" height="62" rx="12" fill="#0e1728" stroke="#1e293b" />
+        <rect x="102" y="450" width="5" height="62" rx="2.5" fill="#4ade80" />
+        <circle cx="140" cy="481" r="11" fill="#4ade80" />
+        <path d="M135 481 L139 485 L146 477" fill="none" stroke="#0b1220" stroke-width="2.4" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <rect x="170" y="475" width="252" height="12" rx="6" fill="#3a4a63" />
+        <rect x="170" y="475" width="252" height="12" rx="6" fill="#4ade80" opacity="0.3" />
+        <rect x="1000" y="471" width="18" height="18" rx="5" fill="#1f2c42" />
+        <rect x="1036" y="471" width="18" height="18" rx="5" fill="#1f2c42" />
+
+        <rect x="102" y="522" width="1000" height="62" rx="12" fill="#0e1728" stroke="#1e293b" />
+        <rect x="102" y="522" width="5" height="62" rx="2.5" fill="url(#a)" />
+        <circle cx="140" cy="553" r="11" fill="none" stroke="#3d5170" stroke-width="2.4" />
+        <rect x="170" y="547" width="356" height="12" rx="6" fill="#2b3a52" />
+        <rect x="1000" y="543" width="18" height="18" rx="5" fill="#1f2c42" />
+        <rect x="1036" y="543" width="18" height="18" rx="5" fill="#1f2c42" />
+    </g>
+
+    <g>
+        <rect x="102" y="604" width="486" height="52" rx="12" fill="#0e1728" stroke="#1e293b" />
+        <rect x="122" y="622" width="150" height="14" rx="7" fill="#243349" />
+        <circle cx="556" cy="630" r="12" fill="url(#a)" opacity="0.8" />
+        <path d="M550 630 L555 635 L563 625" fill="none" stroke="#0b1220" stroke-width="2.6" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <rect x="686" y="604" width="196" height="52" rx="12" fill="#0e1728" stroke="#334155" />
+        <rect x="716" y="622" width="136" height="14" rx="7" fill="#243349" />
+    </g>
+
+    <g>
+        <rect x="912" y="70" width="180" height="34" rx="17" fill="#0b1220" stroke="url(#a)" stroke-opacity="0.5" />
+        <circle cx="934" cy="87" r="5" fill="#a78bfa" />
+        <text x="950" y="93" font-family="Outfit, Segoe UI, system-ui, sans-serif" font-size="15" font-weight="700"
+            letter-spacing="1.4" fill="#c4b5fd">REACT + FIREBASE</text>
+    </g>
+    <text x="886" y="93" text-anchor="end"
+        font-family="Outfit, Segoe UI, system-ui, sans-serif" font-size="20" font-weight="700" fill="#94a3b8">Todo App</text>
+</svg>
