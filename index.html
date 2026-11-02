@@ -7,6 +7,19 @@
         // Swap this before the page renders so scroll-reveal styles only apply
         // when JavaScript is actually available.
         document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+        // Apply the saved theme before the first paint so there is no dark→light
+        // flash on reload (the toggle in script.js keeps it in sync afterwards).
+        (function () {
+            try {
+                var saved = localStorage.getItem('portfolio-theme');
+                var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                var theme = saved || (prefersLight ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                /* storage blocked — keep the default dark theme */
+            }
+        })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -181,6 +194,7 @@
     </header>
 
     <div class="nav-overlay" id="nav-overlay" hidden></div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
     <main id="main-content">
         <!-- ================= Hero Section ================= -->
@@ -295,6 +309,36 @@
                 <span class="mouse-wheel" aria-hidden="true"></span>
             </a>
         </section>
+
+        <!-- Infinite tech marquee (decorative, duplicated for a seamless loop) -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span class="marquee-item">HTML5</span>
+                <span class="marquee-item">CSS3</span>
+                <span class="marquee-item">JavaScript</span>
+                <span class="marquee-item">React</span>
+                <span class="marquee-item">Next.js</span>
+                <span class="marquee-item">Tailwind CSS</span>
+                <span class="marquee-item">Firebase</span>
+                <span class="marquee-item">Node.js</span>
+                <span class="marquee-item">Express</span>
+                <span class="marquee-item">MongoDB</span>
+                <span class="marquee-item">Git</span>
+                <span class="marquee-item">Vite</span>
+                <span class="marquee-item">HTML5</span>
+                <span class="marquee-item">CSS3</span>
+                <span class="marquee-item">JavaScript</span>
+                <span class="marquee-item">React</span>
+                <span class="marquee-item">Next.js</span>
+                <span class="marquee-item">Tailwind CSS</span>
+                <span class="marquee-item">Firebase</span>
+                <span class="marquee-item">Node.js</span>
+                <span class="marquee-item">Express</span>
+                <span class="marquee-item">MongoDB</span>
+                <span class="marquee-item">Git</span>
+                <span class="marquee-item">Vite</span>
+            </div>
+        </div>
 
         <!-- ================= About Me Section ================= -->
         <section class="section about" id="about" aria-labelledby="about-title">
@@ -505,15 +549,97 @@
                     <button class="filter-btn" type="button" data-filter="firebase" aria-pressed="false">Firebase</button>
                     <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web</button>
                 </div>
-                <p class="filter-status" id="filter-status" role="status" aria-live="polite">Showing all 6 projects.</p>
+                <p class="filter-status" id="filter-status" role="status" aria-live="polite">Showing all 7 projects.</p>
 
                 <!-- Projects Grid -->
                 <div class="projects-grid reveal-stagger">
-                    <!-- Project 1: MaintainIQ -->
+                    <!-- Project 1: HCM Lite (Saylani Hackathon) -->
+                    <article class="project-card glass-card" data-category="react web">
+                        <div class="project-media">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">final-hackathon-three-sigma.vercel.app</span>
+                            </div>
+                            <button class="shot" type="button" data-project="HCM Lite"
+                                aria-label="View HCM Lite screenshots">
+                                <img class="shot-frame" src="assets/projects/hcm-1.webp" width="1280" height="800"
+                                    loading="lazy" decoding="async"
+                                    alt="HCM Lite operations dashboard with headcount, attendance and payroll KPIs plus charts">
+                                <img class="shot-frame" src="assets/projects/hcm-2.webp" width="1280" height="800"
+                                    loading="lazy" decoding="async"
+                                    alt="HCM Lite employee directory with department, designation and status columns">
+                                <img class="shot-frame" src="assets/projects/hcm-3.webp" width="1280" height="800"
+                                    loading="lazy" decoding="async"
+                                    alt="HCM Lite payroll runs showing gross, deductions, tax and net pay">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <span class="project-badge">Hackathon Build</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>HCM Lite</h3>
+                            <p class="project-description">
+                                Human Capital Management platform built for the Saylani Hackathon &mdash; role-scoped
+                                workspaces for Admin, HR and Employee with attendance, leave approvals, payroll runs and
+                                an AI assistant that answers from live records.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span>Next.js</span>
+                                <span>React</span>
+                                <span>Tailwind CSS</span>
+                                <span>REST API</span>
+                                <span>AI Assistant</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://final-hackathon-three-sigma.vercel.app/login" target="_blank"
+                                    rel="noopener noreferrer" class="project-link project-link-primary"
+                                    aria-label="HCM Lite live demo (opens in a new tab)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                        </path>
+                                    </svg>
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: MaintainIQ -->
                     <article class="project-card glass-card" data-category="firebase web">
                         <div class="project-media">
-                            <img src="assets/projects/maintainiq.svg" width="1200" height="750" loading="lazy" decoding="async"
-                                alt="Illustrated project cover for MaintainIQ, a maintenance management platform">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">maintain-iq-project.netlify.app</span>
+                            </div>
+                            <button class="shot" type="button" data-project="MaintainIQ"
+                                aria-label="View MaintainIQ screenshots">
+                                <img class="shot-frame" src="assets/projects/maintainiq-1.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="MaintainIQ operations dashboard with asset, issue and repair counters">
+                                <img class="shot-frame" src="assets/projects/maintainiq-2.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="MaintainIQ asset inventory screen with maintenance status cards">
+                                <img class="shot-frame" src="assets/projects/maintainiq-3.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="MaintainIQ maintenance history ledger of resolved tickets">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
                             <span class="project-badge">Maintenance Platform</span>
                         </div>
                         <div class="project-body">
@@ -558,11 +684,33 @@
                         </div>
                     </article>
 
-                    <!-- Project 2: HealthMate (HTML / CSS / JavaScript + Firebase) -->
+                    <!-- Project 3: HealthMate (HTML / CSS / JavaScript + Firebase) -->
                     <article class="project-card glass-card" data-category="firebase web">
                         <div class="project-media">
-                            <img src="assets/projects/healthmate.svg" width="1200" height="750" loading="lazy"
-                                decoding="async" alt="Illustrated project cover for HealthMate, a health management web app">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">hassaan-hub.github.io/HealthMate</span>
+                            </div>
+                            <button class="shot" type="button" data-project="HealthMate"
+                                aria-label="View HealthMate screenshots">
+                                <img class="shot-frame" src="assets/projects/healthmate-1.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="HealthMate landing page with headline and app preview">
+                                <img class="shot-frame" src="assets/projects/healthmate-2.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="HealthMate feature section describing family health profiles">
+                                <img class="shot-frame" src="assets/projects/healthmate-3.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="HealthMate AI guidance section of the landing page">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
                             <span class="project-badge">Health App</span>
                         </div>
                         <div class="project-body">
@@ -590,15 +738,49 @@
                                     </svg>
                                     GitHub
                                 </a>
+                                <a href="https://hassaan-hub.github.io/HealthMate/" target="_blank"
+                                    rel="noopener noreferrer" class="project-link project-link-primary"
+                                    aria-label="HealthMate live demo (opens in a new tab)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                        </path>
+                                    </svg>
+                                    Live Demo
+                                </a>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Project 3: E-Commerce Platform (React frontend) -->
+                    <!-- Project 4: E-Commerce Platform (React frontend) -->
                     <article class="project-card glass-card" data-category="react web">
                         <div class="project-media">
-                            <img src="assets/projects/ecommerce.svg" width="1200" height="750" loading="lazy"
-                                decoding="async" alt="Illustrated project cover for the E-Commerce Platform project">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">ecommerce1277.netlify.app</span>
+                            </div>
+                            <button class="shot" type="button" data-project="E-Commerce Platform"
+                                aria-label="View E-Commerce Platform screenshots">
+                                <img class="shot-frame" src="assets/projects/ecommerce-1.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="E-Commerce storefront with a grid of products, prices and ratings">
+                                <img class="shot-frame" src="assets/projects/ecommerce-2.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="E-Commerce jewellery category filtered product listing">
+                                <img class="shot-frame" src="assets/projects/ecommerce-3.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="E-Commerce product grid scrolled further down the page">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
                             <span class="project-badge">React Frontend</span>
                         </div>
                         <div class="project-body">
@@ -627,15 +809,43 @@
                                     </svg>
                                     GitHub
                                 </a>
+                                <a href="https://ecommerce1277.netlify.app/" target="_blank" rel="noopener noreferrer"
+                                    class="project-link project-link-primary"
+                                    aria-label="E-Commerce Platform live demo (opens in a new tab)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                        </path>
+                                    </svg>
+                                    Live Demo
+                                </a>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Project 4: SetTube (in development) -->
+                    <!-- Project 5: SetTube (in development) -->
                     <article class="project-card glass-card" data-category="react web">
                         <div class="project-media">
-                            <img src="assets/projects/settube.svg" width="1200" height="750" loading="lazy"
-                                decoding="async" alt="Illustrated project cover for SetTube, a video platform in development">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">settube.vercel.app</span>
+                            </div>
+                            <button class="shot" type="button" data-project="SetTube"
+                                aria-label="View the SetTube screenshot">
+                                <img class="shot-frame shot-frame-solo" src="assets/projects/settube-1.webp"
+                                    width="1280" height="800" loading="lazy" decoding="async"
+                                    alt="SetTube video platform home feed with sidebar navigation and video cards">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
                             <span class="project-badge project-badge-dev">In Development</span>
                         </div>
                         <div class="project-body">
@@ -669,11 +879,30 @@
                         </div>
                     </article>
 
-                    <!-- Project 5: Todo App (React + Firebase) -->
+                    <!-- Project 6: Todo App (React + Firebase) -->
                     <article class="project-card glass-card" data-category="react firebase web">
                         <div class="project-media">
-                            <img src="assets/projects/todo-app.svg" width="1200" height="750" loading="lazy"
-                                decoding="async" alt="Illustrated project cover for Todo App, a React and Firebase todo application">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">todo-with-react-green.vercel.app</span>
+                            </div>
+                            <button class="shot" type="button" data-project="Todo App"
+                                aria-label="View Todo App screenshots">
+                                <img class="shot-frame" src="assets/projects/todo-app-1.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="Todo App create account screen with email and password fields">
+                                <img class="shot-frame" src="assets/projects/todo-app-2.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="Todo App log in screen for returning users">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
                             <span class="project-badge">React + Firebase</span>
                         </div>
                         <div class="project-body">
@@ -717,12 +946,31 @@
                         </div>
                     </article>
 
-                    <!-- Project 6: UserPanel -->
+                    <!-- Project 7: UserPanel -->
 
                     <article class="project-card glass-card" data-category="firebase web">
                         <div class="project-media">
-                            <img src="assets/projects/userpanel.svg" width="1200" height="750" loading="lazy"
-                                decoding="async" alt="Illustrated project cover for UserPanel, a user management dashboard">
+                            <div class="shot-chrome" aria-hidden="true">
+                                <span class="shot-dots"><i></i><i></i><i></i></span>
+                                <span class="shot-url">hassaan-hub.github.io/UserPanel</span>
+                            </div>
+                            <button class="shot" type="button" data-project="UserPanel"
+                                aria-label="View UserPanel screenshots">
+                                <img class="shot-frame" src="assets/projects/userpanel-1.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="UserPanel sign up screen with account detail fields">
+                                <img class="shot-frame" src="assets/projects/userpanel-2.webp" width="1280"
+                                    height="800" loading="lazy" decoding="async"
+                                    alt="UserPanel sign in screen">
+                                <span class="shot-hint">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path>
+                                    </svg>
+                                </span>
+                            </button>
                             <span class="project-badge">Firebase Auth</span>
                         </div>
                         <div class="project-body">
@@ -1006,6 +1254,53 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to top -->
+    <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m18 15-6-6-6 6"></path>
+        </svg>
+    </button>
+
+    <!-- ================= Project screenshot lightbox ================= -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+        <div class="lightbox-backdrop" data-lightbox-close></div>
+        <div class="lightbox-panel">
+            <div class="lightbox-head">
+                <h3 id="lightbox-title">Project</h3>
+                <div class="lightbox-head-actions">
+                    <span class="lightbox-count" id="lightbox-count"></span>
+                    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close screenshots">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 6 6 18M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="lightbox-stage">
+                <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button"
+                    aria-label="Previous screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m15 18-6-6 6-6"></path>
+                    </svg>
+                </button>
+                <img class="lightbox-img" id="lightbox-img" alt="">
+                <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button"
+                    aria-label="Next screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
+        </div>
+    </div>
 
     <!-- Custom JavaScript -->
     <script src="script.js" defer></script>

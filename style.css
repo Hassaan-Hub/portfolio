@@ -419,10 +419,18 @@ p {
     animation: rotate 0.9s linear infinite;
 }
 
+/* SVGs are not HTML elements, so the [hidden] attribute alone never hides
+   them — the loading spinner used to sit in the button permanently. */
+.btn-spinner[hidden],
+.btn-icon[hidden] {
+    display: none;
+}
+
 /* ==========================================================================
    04. Cards & glassmorphism
    ========================================================================== */
 .glass-card {
+    position: relative;
     background: var(--card-bg);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -431,6 +439,30 @@ p {
     padding: 2rem;
     transition: border-color var(--transition-normal), box-shadow var(--transition-normal),
         transform var(--transition-normal), background-color var(--transition-normal);
+}
+
+/* Pointer-following spotlight (--mx/--my are set in script.js) */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%),
+            rgba(59, 130, 246, 0.11),
+            transparent 62%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+/* Project cards show a screenshot instead — no tint over the image */
+.project-card::before {
+    display: none;
 }
 
 .glass-card:hover {
@@ -1009,11 +1041,18 @@ html[data-theme="light"] .icon-moon {
     gap: 1.25rem;
 }
 
+/* Icon beside a stacked heading + paragraph. Grid (not flex) is what keeps the
+   heading and text in the same column instead of placing them side by side. */
 .feature-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.15rem;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.3rem 1.15rem;
     padding: 1.6rem;
+}
+
+.feature-card .card-icon {
+    grid-row: 1 / span 2;
 }
 
 .card-icon {
@@ -1180,29 +1219,176 @@ html[data-theme="light"] .icon-moon {
 
 .project-media {
     position: relative;
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
     background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    overflow: hidden;
+}
+
+/* Faux browser chrome — makes the screenshot read as a real product */
+.shot-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 0.8rem;
+    background-color: var(--bg-tertiary);
     border-bottom: 1px solid var(--card-border);
 }
 
-.project-media img {
+.shot-dots {
+    display: flex;
+    flex-shrink: 0;
+    gap: 4px;
+}
+
+.shot-dots i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    opacity: 0.35;
+}
+
+.shot-dots i:nth-child(1) {
+    background-color: #f87171;
+    opacity: 0.85;
+}
+
+.shot-dots i:nth-child(2) {
+    background-color: #fbbf24;
+    opacity: 0.85;
+}
+
+.shot-dots i:nth-child(3) {
+    background-color: #34d399;
+    opacity: 0.85;
+}
+
+.shot-url {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Screenshot stage — frames are stacked and cross-faded on hover */
+.shot {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--bg-secondary);
+    border: 0;
+    cursor: zoom-in;
+}
+
+.shot-frame {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity var(--transition-normal);
+    object-position: top center;
+    opacity: 0;
+    transform: scale(1.001);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project-card:hover .project-media img {
-    transform: scale(1.02);
+/* First frame is the resting state; the rest only appear while hovering */
+.shot-frame:first-child {
+    opacity: 1;
+}
+
+.project-card:hover .shot-frame,
+.project-card:focus-within .shot-frame {
+    animation: shotCycle 9s linear infinite;
+    will-change: opacity;
+}
+
+.project-card:hover .shot-frame:nth-child(2),
+.project-card:focus-within .shot-frame:nth-child(2) {
+    animation-delay: 3s;
+}
+
+.project-card:hover .shot-frame:nth-child(3),
+.project-card:focus-within .shot-frame:nth-child(3) {
+    animation-delay: 6s;
+}
+
+/* Single-screen project: a slow pan instead of a slideshow */
+.project-card:hover .shot-frame-solo,
+.project-card:focus-within .shot-frame-solo {
+    animation: slowPan 8s ease-in-out infinite alternate;
+}
+
+/* Soft top/bottom shading so badges and hints stay legible on any screenshot */
+.shot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(4, 8, 15, 0.22) 0%, transparent 22%, transparent 72%, rgba(4, 8, 15, 0.5) 100%);
+    opacity: 0.55;
+    transition: opacity var(--transition-normal);
+}
+
+.project-card:hover .shot::after {
+    opacity: 0.9;
+}
+
+.shot-hint {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #f1f5f9;
+    background-color: rgba(8, 16, 31, 0.72);
+    border: 1px solid rgba(148, 178, 214, 0.28);
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.shot-hint svg {
+    width: 15px;
+    height: 15px;
+}
+
+.project-card:hover .shot-hint,
+.shot:focus-visible .shot-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Touch devices never hover — show the hint permanently as a tap affordance */
+@media (hover: none) {
+    .shot-hint {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .project-badge {
     position: absolute;
-    top: 0.9rem;
-    left: 0.9rem;
-    padding: 0.28rem 0.65rem;
-    font-size: 0.68rem;
+    bottom: 0.7rem;
+    left: 0.7rem;
+    z-index: 2;
+    padding: 0.26rem 0.6rem;
+    font-size: 0.62rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1353,15 +1539,22 @@ html[data-theme="light"] .icon-moon {
 .timeline-dot {
     position: absolute;
     top: 1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
+    /* Left-hand items: the dot hangs on the right edge, i.e. the centre line */
+    right: 0;
     width: 14px;
     height: 14px;
+    transform: translateX(50%);
     background-image: var(--accent-gradient);
     border: 3px solid var(--bg-primary);
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
     z-index: 2;
+}
+
+.timeline-item.right .timeline-dot {
+    right: auto;
+    left: 0;
+    transform: translateX(-50%);
 }
 
 .timeline-content {
@@ -1787,6 +1980,303 @@ html[data-theme="light"] .icon-moon {
 }
 
 /* ==========================================================================
+   14b. Extra UI: scroll progress, marquee, back-to-top, lightbox
+   ========================================================================== */
+
+/* Thin reading-progress line pinned to the very top of the viewport */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background-image: var(--accent-gradient);
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Infinite technology marquee between the hero and the About section */
+.marquee {
+    position: relative;
+    padding: 1.1rem 0;
+    overflow: hidden;
+    border-block: 1px solid var(--card-border);
+    background-color: var(--bg-tertiary);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 2.75rem;
+    width: max-content;
+    animation: marqueeScroll 42s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+}
+
+.marquee-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -1.45rem;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--accent-primary);
+    opacity: 0.5;
+    transform: translateY(-50%);
+}
+
+.marquee-item:hover {
+    color: var(--text-primary);
+}
+
+/* Back-to-top */
+.to-top {
+    position: fixed;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text-primary);
+    background-color: var(--card-bg-solid);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 12px, 0) scale(0.94);
+    transition: opacity var(--transition-normal), transform var(--transition-normal),
+        visibility 0s linear var(--transition-normal), border-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: opacity var(--transition-normal), transform var(--transition-normal),
+        visibility 0s linear 0s, border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.to-top:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-primary);
+    transform: translate3d(0, -3px, 0) scale(1);
+}
+
+.to-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ---- Lightbox ---- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(3, 7, 14, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: fadeIn 0.25s ease both;
+}
+
+.lightbox-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    width: min(1120px, 100%);
+    max-height: 100%;
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    animation: lightboxIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lightbox-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-inline: 0.35rem;
+}
+
+.lightbox-head h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.lightbox-head-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.lightbox-count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.lightbox-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    color: var(--text-secondary);
+    background-color: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.lightbox-close:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
+}
+
+.lightbox-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+.lightbox-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 0;
+}
+
+.lightbox-img {
+    flex: 1;
+    width: 100%;
+    max-height: min(68vh, 720px);
+    object-fit: contain;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+}
+
+.lightbox-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    color: var(--text-primary);
+    background-color: var(--card-bg-solid);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Author `display` rules would otherwise beat the [hidden] UA style */
+.lightbox-nav[hidden],
+.lightbox-thumbs[hidden] {
+    display: none;
+}
+
+.lightbox-nav:hover:not(:disabled) {
+    color: var(--accent-cyan);
+    border-color: var(--accent-primary);
+    transform: scale(1.06);
+}
+
+.lightbox-nav:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.lightbox-nav svg {
+    width: 18px;
+    height: 18px;
+}
+
+.lightbox-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.15rem 0.35rem 0.35rem;
+}
+
+.lightbox-thumb {
+    width: 96px;
+    aspect-ratio: 16 / 10;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity var(--transition-fast), border-color var(--transition-fast);
+}
+
+.lightbox-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lightbox-thumb:hover {
+    opacity: 0.85;
+}
+
+.lightbox-thumb.active {
+    opacity: 1;
+    border-color: var(--accent-primary);
+}
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+/* ==========================================================================
    15. Keyframes
    ========================================================================== */
 @keyframes blink {
@@ -1854,6 +2344,64 @@ html[data-theme="light"] .icon-moon {
     50% {
         opacity: 1;
         transform: scale(1.15);
+    }
+}
+
+/* Project screenshot slideshow: each frame owns a third of the cycle */
+@keyframes shotCycle {
+
+    0%,
+    27% {
+        opacity: 1;
+    }
+
+    34%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Slow drift for projects that only have a single screenshot */
+@keyframes slowPan {
+    from {
+        transform: scale(1.02) translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: scale(1.07) translate3d(0, -1.5%, 0);
+    }
+}
+
+@keyframes marqueeScroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        /* The track holds two identical halves, so -50% loops seamlessly */
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes lightboxIn {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 14px, 0) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
     }
 }
 
@@ -2033,6 +2581,15 @@ html[data-theme="light"] .icon-moon {
 
     .timeline-dot {
         left: 7px;
+        transform: translateX(-50%);
+    }
+
+    /* On mobile every card is left-aligned, so both dot variants sit on the
+       single rail at 7px instead of the (now hidden) centre line */
+    .timeline-item .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: 7px;
+        right: auto;
         transform: translateX(-50%);
     }
 

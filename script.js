@@ -133,12 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
             glowX = event.clientX;
             glowY = event.clientY;
             glowTicking = true;
+            // Show on the first real move — a pointer that is already inside the
+            // window on load never fires pointerenter on the document
+            cursorGlow.style.opacity = '1';
             window.requestAnimationFrame(moveGlow);
         }, { passive: true });
 
-        // Ease the glow in and out instead of hard-cutting
+        // Ease the glow out when the pointer leaves the page
         cursorGlow.style.opacity = '0';
-        document.addEventListener('pointerenter', () => { cursorGlow.style.opacity = '1'; });
         document.addEventListener('pointerleave', () => { cursorGlow.style.opacity = '0'; });
     }
 
@@ -233,6 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .map((link) => document.querySelector(link.getAttribute('href')))
         .filter(Boolean);
 
+    // Reading progress + back-to-top share this single scroll pass
+    const progressBar = document.getElementById('scroll-progress');
+    const toTopButton = document.getElementById('to-top');
+    const maxScroll = () => Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+
     let sectionTops = [];
 
     const measureSections = () => {
@@ -255,6 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateOnScroll = () => {
         if (navbar) {
             navbar.classList.toggle('scrolled', window.scrollY > 24);
+        }
+
+        if (progressBar) {
+            progressBar.style.transform = `scaleX(${Math.min(1, window.scrollY / maxScroll())})`;
+        }
+
+        if (toTopButton) {
+            toTopButton.classList.toggle('visible', window.scrollY > 600);
         }
 
         // Reveal anything the observer skipped over (End key, anchor jumps)
@@ -396,13 +411,170 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (filterStatus) {
-                const label = filterValue === 'all' ? 'all' : filterValue;
-                filterStatus.textContent = visibleCount
-                    ? `Showing ${visibleCount} project${visibleCount === 1 ? '' : 's'} in "${label}".`
-                    : `No projects found in "${label}".`;
+                const label = button.textContent.trim();
+
+                if (!visibleCount) {
+                    filterStatus.textContent = `No projects found in "${label}".`;
+                } else if (filterValue === 'all') {
+                    filterStatus.textContent = `Showing all ${visibleCount} projects.`;
+                } else {
+                    filterStatus.textContent = `Showing ${visibleCount} project${visibleCount === 1 ? '' : 's'} in "${label}".`;
+                }
             }
         });
     });
+
+    /* ======================================================================
+       7b. Back to top
+       ====================================================================== */
+    if (toTopButton) {
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+            });
+        });
+    }
+
+    /* ======================================================================
+       7c. Project screenshot lightbox
+       ====================================================================== */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxCount = document.getElementById('lightbox-count');
+    const lightboxThumbs = document.getElementById('lightbox-thumbs');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxClose = lightbox?.querySelector('.lightbox-close');
+
+    if (lightbox && lightboxImg) {
+        let gallery = [];
+        let galleryIndex = 0;
+        let lastFocused = null;
+
+        const renderFrame = () => {
+            const frame = gallery[galleryIndex];
+            lightboxImg.src = frame.src;
+            lightboxImg.alt = frame.alt;
+            lightboxCount.textContent = `${galleryIndex + 1} / ${gallery.length}`;
+            lightboxPrev.disabled = galleryIndex === 0;
+            lightboxNext.disabled = galleryIndex === gallery.length - 1;
+
+            Array.from(lightboxThumbs.children).forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === galleryIndex);
+                thumb.setAttribute('aria-current', String(index === galleryIndex));
+            });
+        };
+
+        const step = (delta) => {
+            const next = galleryIndex + delta;
+            if (next < 0 || next >= gallery.length) return;
+            galleryIndex = next;
+            renderFrame();
+        };
+
+        const openLightbox = (trigger) => {
+            const frames = Array.from(trigger.querySelectorAll('img'));
+            if (!frames.length) return;
+
+            gallery = frames.map((img) => ({ src: img.getAttribute('src'), alt: img.alt }));
+            galleryIndex = 0;
+            lastFocused = trigger;
+
+            lightboxTitle.textContent = trigger.dataset.project || 'Project screenshots';
+
+            // Rebuild the thumbnail strip for this project
+            lightboxThumbs.replaceChildren();
+            gallery.forEach((frame, index) => {
+                const thumb = document.createElement('button');
+                thumb.type = 'button';
+                thumb.className = 'lightbox-thumb';
+                thumb.setAttribute('aria-label', `Show screenshot ${index + 1}`);
+
+                const thumbImg = document.createElement('img');
+                thumbImg.src = frame.src;
+                thumbImg.alt = '';
+                thumb.appendChild(thumbImg);
+
+                thumb.addEventListener('click', () => {
+                    galleryIndex = index;
+                    renderFrame();
+                });
+
+                lightboxThumbs.appendChild(thumb);
+            });
+
+            // A single screenshot needs no arrows or thumbnails
+            const multiple = gallery.length > 1;
+            lightboxPrev.hidden = !multiple;
+            lightboxNext.hidden = !multiple;
+            lightboxThumbs.hidden = !multiple;
+
+            renderFrame();
+            lightbox.hidden = false;
+            document.body.classList.add('lightbox-open');
+            lightboxClose?.focus();
+        };
+
+        const closeLightbox = () => {
+            if (lightbox.hidden) return;
+            lightbox.hidden = true;
+            document.body.classList.remove('lightbox-open');
+            lastFocused?.focus();
+        };
+
+        document.querySelectorAll('.shot').forEach((trigger) => {
+            trigger.addEventListener('click', () => openLightbox(trigger));
+        });
+
+        lightbox.querySelectorAll('[data-lightbox-close]').forEach((el) => {
+            el.addEventListener('click', closeLightbox);
+        });
+
+        lightboxPrev?.addEventListener('click', () => step(-1));
+        lightboxNext?.addEventListener('click', () => step(1));
+
+        document.addEventListener('keydown', (event) => {
+            if (lightbox.hidden) return;
+
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (event.key === 'ArrowLeft') {
+                step(-1);
+            } else if (event.key === 'ArrowRight') {
+                step(1);
+            } else if (event.key === 'Tab') {
+                // Keep focus inside the dialog while it is open
+                const focusable = lightbox.querySelectorAll('button:not([disabled]):not([hidden])');
+                if (!focusable.length) return;
+
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+    }
+
+    /* ======================================================================
+       7d. Pointer spotlight on cards (fine pointers only)
+       ====================================================================== */
+    if (hasFinePointer.matches) {
+        document.querySelectorAll('.glass-card:not(.project-card)').forEach((card) => {
+            card.addEventListener('pointermove', (event) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+                card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+            });
+        });
+    }
 
     /* ======================================================================
        8. Contact form — opens the visitor's own email app (no backend)
