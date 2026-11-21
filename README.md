@@ -10,15 +10,20 @@ dev server / bundler for deployment.
 
 ```
 index.html                 markup, SEO meta, JSON-LD, all content
+genai.html                 GenAI case study page — overview, features, tech, AI flow,
+                           screenshot gallery and project links
 style.css                  dark/light theme, layout, responsive + motion rules
 script.js                  theme, navigation, typewriter, filters, lightbox, contact form
 scripts/
   capture-projects.mjs     re-captures the live screenshots for every project card
+  capture-genai-shots.mjs  re-captures the live screenshots for the GenAI app
 assets/
   cv/                      Muhammad_Hassaan_CV.pdf (all CV buttons point here)
   img/                     favicon.svg, og-image.png, og-image.svg
   projects/                one WebP screenshot set per project (name-N.webp)
-public/                    files that must be copied as-is into the build output
+public/
+  images/projects/genai/   genuine GenAI app screenshots: login, home, resume upload,
+                           report, technical, behavioral and roadmap screens
 ```
 
 ## Project screenshots
@@ -48,13 +53,16 @@ number of frames, update the matching `<img class="shot-frame">` tags in `index.
 ## Before publishing
 
 1. Keep **`assets/cv/Muhammad_Hassaan_CV.pdf`** in place — every CV button points at that path.
-2. Re-run `npm run shots` whenever a project's live UI changes.
-3. The contact form has no backend: it validates, then opens the visitor's own email app via
+2. Re-run `npm run genai-shots` when the GenAI app changes — it recaptures 7 genuine
+   screenshots of the deployed application into `public/images/projects/genai/`.
+3. Re-run `npm run shots` whenever a project's live UI changes.
+4. The contact form has no backend: it validates, then opens the visitor's own email app via
    `mailto:`. Nothing is sent to a server, and the page says so.
 
 ## Editing content
 
 - Text, project cards, skills and links: `index.html`
+- GenAI case study text, features, tech list and gallery: `genai.html`
 - Colours, spacing, breakpoints: the `:root` custom properties at the top of `style.css`
 - Reveal animations are opt-in per element via the `reveal` / `reveal-stagger` classes. They
   only hide content when JavaScript is available, so the page stays readable without it.

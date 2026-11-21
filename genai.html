@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Swap this before the page renders so scroll-reveal styles only apply
+        // when JavaScript is actually available.
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+        // Apply the saved theme before the first paint so there is no dark→light
+        // flash on reload (the toggle in script.js keeps it in sync afterwards).
+        (function () {
+            try {
+                var saved = localStorage.getItem('portfolio-theme');
+                var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                var theme = saved || (prefersLight ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                /* storage blocked — keep the default dark theme */
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ================= SEO ================= -->
+    <title>GenAI — AI Interview Preparation Platform — by Muhammad Hassaan</title>
+    <meta name="description"
+        content="GenAI is an AI-powered interview preparation platform. Upload your resume, paste your target job description and receive an AI-generated interview report — candidate match score, technical and behavioral interview questions, skill gap analysis and a 7-day preparation roadmap.">
+    <meta name="author" content="Muhammad Hassaan">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#080c14">
+    <link rel="canonical" href="https://hassaan-tau.vercel.app/genai.html">
+
+    <!-- ================= Open Graph / Social ================= -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hassaan.dev">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://hassaan-tau.vercel.app/genai.html">
+    <meta property="og:title" content="GenAI — AI Interview Preparation Platform">
+    <meta property="og:description"
+        content="AI-powered interview preparation: upload your resume, paste the target job description, and get the candidate match score, technical and behavioral questions, skill gaps and a 7-day roadmap.">
+    <meta property="og:image" content="https://hassaan-tau.vercel.app/assets/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="GenAI — AI Interview Preparation Platform">
+
+    <!-- ================= Twitter Card ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GenAI — AI Interview Preparation Platform">
+    <meta name="twitter:description"
+        content="AI-powered interview preparation: upload your resume, paste the target job description, and get the candidate match score, technical and behavioral questions, skill gaps and a 7-day roadmap.">
+    <meta name="twitter:image" content="https://hassaan-tau.vercel.app/assets/img/og-image.png">
+
+    <!-- ================= Favicon ================= -->
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+    <!-- ================= Fonts ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap">
+    </noscript>
+
+    <!-- ================= Custom CSS ================= -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#genai-main-content">Skip to main content</a>
+
+    <!-- Background Gradient Glows (decorative) -->
+    <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ================= Navigation Header ================= -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="https://hassaan-tau.vercel.app/" class="logo" aria-label="Hassaan.dev — back to the portfolio">
+                <span class="logo-accent">&lt;</span>Hassaan<span class="logo-accent">.dev /&gt;</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+                <a href="https://hassaan-tau.vercel.app/" class="nav-link">Home</a>
+                <a href="https://hassaan-tau.vercel.app/#about" class="nav-link">About</a>
+                <a href="https://hassaan-tau.vercel.app/#skills" class="nav-link">Skills</a>
+                <a href="https://hassaan-tau.vercel.app/#projects" class="nav-link active" aria-current="page">Projects</a>
+                <a href="https://hassaan-tau.vercel.app/#education" class="nav-link">Education</a>
+                <a href="https://hassaan-tau.vercel.app/#contact" class="nav-link">Contact</a>
+                <a href="assets/cv/Muhammad_Hassaan_CV.pdf" download class="btn btn-primary nav-cv-mobile">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+                    </svg>
+                    Download CV
+                </a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="assets/cv/Muhammad_Hassaan_CV.pdf" download class="btn btn-primary nav-cv-btn"
+                    aria-label="Download my CV as a PDF">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+                    </svg>
+                    <span>Download CV</span>
+                </a>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"
+                    aria-pressed="false">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path
+                            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+                <button class="hamburger-menu" id="hamburger-menu" type="button"
+                    aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-overlay" id="nav-overlay" hidden></div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <main id="genai-main-content" class="genai-page">
+
+        <!-- ================= GenAI Hero ================= -->
+        <section class="genai-hero">
+            <div class="container genai-hero-container">
+                <div class="genai-hero-content">
+                    <span class="genai-hero-eyebrow">AI Interview Preparation Platform</span>
+                    <h1>GenAI — <span class="text-gradient">AI Interview Prep</span></h1>
+                    <p class="genai-hero-subtitle">
+                        Upload your resume, paste your target job description, and receive an AI-generated interview
+                        report — candidate match score, technical and behavioral questions, skill gap analysis and a
+                        7-day preparation roadmap, in one click.
+                    </p>
+                    <div class="genai-hero-ctas">
+                        <a href="https://gen-ai-frontend-pi.vercel.app/" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-primary">
+                            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            </svg>
+                            Live Demo
+                        </a>
+                        <a href="https://github.com/Hassaan-Hub/GenAi_Frontend" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-secondary">
+                            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path
+                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                            </svg>
+                            GitHub Repository
+                        </a>
+                        <a href="https://hassaan-tau.vercel.app/#projects" class="btn btn-ghost">
+                            View all Projects
+                        </a>
+                    </div>
+                    <div class="genai-hero-stack" aria-label="GenAI technology stack">
+                        React 19 · Vite · React Router · Axios · SCSS
+                    </div>
+                </div>
+                <div class="genai-hero-visual" aria-hidden="true">
+                    <div class="genai-orb">
+                        <div class="genai-orb-inner"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= Project Overview ================= -->
+        <section class="container genai-main">
+
+            <div class="genai-content-card glass-card reveal">
+                <span class="genai-tag">Project Overview</span>
+                <h3>GenAI — AI Interview Preparation Platform</h3>
+                <p>
+                    GenAI is an AI-powered interview preparation platform that helps candidates prepare for job
+                    interviews using their resumes and target job descriptions. Users upload their PDF resume,
+                    provide a personal introduction and the target job description, and receive an AI-generated
+                    interview preparation report: candidate match score, technical and behavioral interview
+                    questions, skill gap analysis and a personalized 7-day preparation roadmap.
+                </p>
+            </div>
+
+            <!-- ================= Problem Statement ================= -->
+            <div class="genai-content-card glass-card reveal">
+                <span class="genai-tag">Problem Statement</span>
+                <h3>Job seekers waste hours preparing for interviews with no personalized starting point</h3>
+                <p>
+                    Job seekers spend hours searching for relevant interview questions, identifying their weak
+                    areas and building a study plan — most of it generic and not tailored to their profile or the
+                    role they are targeting. Without a structured, personalized plan, interview preparation is
+                    inefficient and easy to postpone.
+                </p>
+            </div>
+
+            <!-- ================= Solution ================= -->
+            <div class="genai-content-card glass-card reveal">
+                <span class="genai-tag">Solution</span>
+                <h3>GenAI automates interview preparation end to end</h3>
+                <p>
+                    GenAI analyzes the user's resume and the target job description to compute a candidate match
+                    score, extracts technical and behavioral interview questions, identifies skill gaps, and
+                    generates a day-by-day preparation roadmap — all in one personalized, shareable report that
+                    users can save and download as a PDF.
+                </p>
+            </div>
+
+            <!-- ================= Key Features ================= -->
+            <section class="genai-features" aria-label="Key features">
+                <h3 class="genai-section-title">Key Features</h3>
+                <div class="genai-feature-grid">
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Input</span>
+                        <h4>Target Job Description</h4>
+                        <p>Paste the full job description — required, up to 5,000 characters.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Input</span>
+                        <h4>Upload Resume</h4>
+                        <p>PDF or DOCX, up to 5 MB. Either a resume or a self-description is required to generate
+                            a personalized plan.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Input</span>
+                        <h4>Quick Self-Description</h4>
+                        <p>Describe your experience, key skills and years of experience if you do not have a
+                            resume handy.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Report</span>
+                        <h4>AI-Powered Resume &amp; Job Matching</h4>
+                        <p>Candidate match score between your profile and the target job — Strong, Good or Room
+                            to grow match.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Report</span>
+                        <h4>Technical Interview Questions</h4>
+                        <p>Role-specific technical questions, each with an intention and a model answer to
+                            practice against.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Report</span>
+                        <h4>Behavioral Interview Questions</h4>
+                        <p>Behavioral questions with intentions and model answers for interview prep.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Report</span>
+                        <h4>Skill Gap Analysis</h4>
+                        <p>Skills from the job description the candidate is missing, tagged by severity — high,
+                            medium or low.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Report</span>
+                        <h4>Personalized 7-Day Preparation Roadmap</h4>
+                        <p>A day-by-day plan — focus areas and concrete tasks — tailored to the skill gaps.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Report</span>
+                        <h4>Interview Report Generation</h4>
+                        <p>"Generate My Interview Strategy" runs the AI analysis and opens the saved report. A
+                            PDF can be downloaded from the report page.</p>
+                    </article>
+                    <article class="genai-feature glass-card reveal">
+                        <span class="genai-feature-tag">Storage</span>
+                        <h4>MongoDB-Based Report Storage</h4>
+                        <p>Reports are saved per user — the home page lists them with relative timestamps and
+                            you can return to any report later.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ================= Technologies Used ================= -->
+            <section class="genai-tech" aria-label="Technologies used">
+                <h3>Technologies Used</h3>
+                <dl class="genai-tech-table">
+                    <div class="genai-tech-row">
+                        <dt>Frontend</dt>
+                        <dd>React 19, Vite, React Router, Axios, SCSS</dd>
+                    </div>
+                    <div class="genai-tech-row">
+                        <dt>Backend</dt>
+                        <dd>Node.js, Express, MongoDB, Mongoose</dd>
+                    </div>
+                    <div class="genai-tech-row">
+                        <dt>AI Integration</dt>
+                        <dd>Google Gemini AI</dd>
+                    </div>
+                </dl>
+                <div class="genai-tech-badges">
+                    <span class="skill-tag">React 19</span>
+                    <span class="skill-tag">Vite</span>
+                    <span class="skill-tag">React Router</span>
+                    <span class="skill-tag">Axios</span>
+                    <span class="skill-tag">SCSS</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Mongoose</span>
+                    <span class="skill-tag">Google Gemini</span>
+                </div>
+            </section>
+
+            <!-- ================= AI Integration ================= -->
+            <section class="genai-ai" aria-label="AI Integration">
+                <h3>AI Integration</h3>
+                <div class="genai-ai-flow">
+                    <div class="genai-ai-step">
+                        <span class="genai-ai-step-num">1</span>
+                        <h4>Upload &amp; Paste</h4>
+                        <p>Resume (PDF/DOCX) and the target job description</p>
+                    </div>
+                    <svg class="genai-ai-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m13 6-4 4 4 4M19 6l-4 4 4 4M5 10h13"/>
+                    </svg>
+                    <div class="genai-ai-step">
+                        <span class="genai-ai-step-num">2</span>
+                        <h4>Google Gemini AI</h4>
+                        <p>Analyzes the resume and job description server-side</p>
+                    </div>
+                    <svg class="genai-ai-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m13 6-4 4 4 4M19 6l-4 4 4 4M5 10h13"/>
+                    </svg>
+                    <div class="genai-ai-step">
+                        <span class="genai-ai-step-num">3</span>
+                        <h4>Structured Report</h4>
+                        <p>Match score, questions, skill gaps and roadmap</p>
+                    </div>
+                    <svg class="genai-ai-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m13 6-4 4 4 4M19 6l-4 4 4 4M5 10h13"/>
+                    </svg>
+                    <div class="genai-ai-step">
+                        <span class="genai-ai-step-num">4</span>
+                        <h4>Stored &amp; Shared</h4>
+                        <p>Saved to MongoDB; downloadable as PDF</p>
+                    </div>
+                </div>
+                <p>
+                    The frontend sends the inputs as <code>multipart/form-data</code> — <code>jobDescription</code>,
+                    <code>selfDescription</code> and the optional <code>resume</code> file — via Axios
+                    (<code>withCredentials: true</code>) to the backend. The backend calls Google Gemini and returns
+                    the structured report: <code>matchScore</code>, <code>technicalQuestions</code>
+                    (<code>question</code> / <code>intention</code> / <code>answer</code>),
+                    <code>behavioralQuestions</code>, <code>skillGaps</code> (<code>skill</code> /
+                    <code>severity</code>) and <code>preparationPlan</code> (7 days of <code>day</code>,
+                    <code>focus</code> and <code>tasks</code>). The report PDF is fetched as a blob from
+                    <code>GET /api/interview/report/:id/pdf</code>.
+                </p>
+                <p class="genai-ai-note">
+                    The frontend defaults to the backend at
+                    <code>https://gen-ai-backend-opal.vercel.app/</code> when no override is configured.
+                </p>
+            </section>
+
+            <!-- ================= Application Screenshots ================= -->
+            <section class="genai-gallery-section" aria-label="GenAI application screenshots">
+                <h3>Application Screenshots</h3>
+                <p class="gallery-note">
+                    Genuine screenshots of the deployed application — click any frame to open the full-size
+                    lightbox viewer with navigation.
+                </p>
+                <div class="genai-gallery reveal">
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI login screen">
+                            <img class="shot-frame" src="images/projects/genai/genai-1-login.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI login screen (deployed application)">
+                        </button>
+                        <figcaption class="genai-caption">1 — Login screen — the app lands on its login page</figcaption>
+                    </figure>
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI home">
+                            <img class="shot-frame" src="images/projects/genai/genai-2-home.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI home — 'Create Your Custom Interview Plan': target job description input and your profile panel">
+                        </button>
+                        <figcaption class="genai-caption">2 — Home — 'Create Your Custom Interview Plan'</figcaption>
+                    </figure>
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI resume upload interface">
+                            <img class="shot-frame" src="images/projects/genai/genai-3-resume-upload.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI resume upload interface in the profile panel — PDF or DOCX, up to 5 MB">
+                        </button>
+                        <figcaption class="genai-caption">3 — Resume upload — profile panel interface</figcaption>
+                    </figure>
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI interview report">
+                            <img class="shot-frame" src="images/projects/genai/genai-4-report.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI AI-generated interview report — match score, skill gaps, technical and behavioral questions">
+                        </button>
+                        <figcaption class="genai-caption">4 — AI-generated interview report — match score, skill gaps, questions</figcaption>
+                    </figure>
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI technical questions">
+                            <img class="shot-frame" src="images/projects/genai/genai-5-technical.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI technical interview questions — question cards with intentions and model answers">
+                        </button>
+                        <figcaption class="genai-caption">5 — Technical questions</figcaption>
+                    </figure>
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI behavioral questions">
+                            <img class="shot-frame" src="images/projects/genai/genai-6-behavioral.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI behavioral interview questions — question cards with intentions and model answers">
+                        </button>
+                        <figcaption class="genai-caption">6 — Behavioral questions</figcaption>
+                    </figure>
+                    <figure class="genai-shot">
+                        <button class="shot" type="button" data-project="GenAI preparation roadmap">
+                            <img class="shot-frame" src="images/projects/genai/genai-7-roadmap.webp" width="1280"
+                                height="800" loading="lazy" decoding="async"
+                                alt="GenAI 7-day interview preparation roadmap — day cards with focus areas and tasks">
+                        </button>
+                        <figcaption class="genai-caption">7 — 7-Day preparation roadmap</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- ================= Challenges and Learning ================= -->
+            <section class="genai-challenges" aria-label="Challenges and learning">
+                <h3>Challenges and Learning</h3>
+                <div class="genai-challenge-grid">
+                    <article class="genai-challenge glass-card reveal">
+                        <span class="genai-tag">Integration</span>
+                        <h4>Separate frontend and backend repositories</h4>
+                        <p>
+                            GenAI is a full-stack app — the React frontend is maintained in its own repository,
+                            while the backend (Express, MongoDB, Gemini) lives in a separate repository. I
+                            therefore verified the actual feature set from the source and the live application
+                            instead of assuming a single repo, then adapted the verified screens into this
+                            static-site showcase without guessing at features.
+                        </p>
+                    </article>
+                    <article class="genai-challenge glass-card reveal">
+                        <span class="genai-tag">Screenshots</span>
+                        <h4>Capturing genuine product screenshots</h4>
+                        <p>
+                            This environment had no built-in browser screenshot tool, so I captured the screens
+                            with headless Chrome driven via puppeteer-core against the deployed application —
+                            registering a throwaway account through the app's own sign-up flow, uploading the
+                            PDF, generating a report and screenshots of every screen. No stock images — the
+                            7 images above are genuine captures of the live app.
+                        </p>
+                    </article>
+                    <article class="genai-challenge glass-card reveal">
+                        <span class="genai-tag">UI &amp; Design</span>
+                        <h4>Translating the AI report into clean sections</h4>
+                        <p>
+                            The report page packs a lot — match score ring, collapsible question cards, skill
+                            severity chips and a day-by-day roadmap. I broke it into focused, consistently
+                            proportioned sections (overview, problem, solution, features, tech, AI flow,
+                            gallery, challenges) that work in both dark and light themes and stay responsive
+                            from desktop to mobile.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ================= Project Links ================= -->
+            <section class="genai-links" aria-label="Project links">
+                <h3>Project Links</h3>
+                <div class="genai-link-tiles">
+                    <a href="https://gen-ai-frontend-pi.vercel.app/" target="_blank" rel="noopener noreferrer"
+                        class="genai-link glass-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        </svg>
+                        <span>Live Demo</span>
+                    </a>
+                    <a href="https://github.com/Hassaan-Hub/GenAi_Frontend" target="_blank" rel="noopener noreferrer"
+                        class="genai-link glass-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                        <span>GitHub Repository</span>
+                    </a>
+                    <a href="https://hassaan-tau.vercel.app/#projects" class="genai-link glass-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m19 20-6.3-6.3M5 8v12M11 8v12"></path>
+                            <path d="m19 4-6.3 6.3"></path>
+                        </svg>
+                        <span>View in Portfolio</span>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- ================= Footer ================= -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="https://hassaan-tau.vercel.app/" class="footer-logo" aria-label="Hassaan.dev — back to the portfolio">
+                    <span class="logo-accent">&lt;</span>Hassaan<span class="logo-accent">.dev /&gt;</span>
+                </a>
+                <p class="footer-role">Frontend Developer <span aria-hidden="true">|</span> React <span
+                        aria-hidden="true">|</span> Next.js <span aria-hidden="true">|</span> JavaScript</p>
+                <p class="footer-credit">Designed &amp; built by <span class="text-gradient">Muhammad Hassaan</span>.</p>
+            </div>
+
+            <nav class="footer-links" aria-label="Footer quick links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="https://hassaan-tau.vercel.app/">Home</a></li>
+                    <li><a href="https://hassaan-tau.vercel.app/#about">About</a></li>
+                    <li><a href="https://hassaan-tau.vercel.app/#skills">Skills</a></li>
+                    <li><a href="https://hassaan-tau.vercel.app/#projects">Projects</a></li>
+                    <li><a href="https://hassaan-tau.vercel.app/#education">Education</a></li>
+                    <li><a href="https://hassaan-tau.vercel.app/#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-actions">
+                <h4>Actions</h4>
+                <ul>
+                    <li>
+                        <a href="assets/cv/Muhammad_Hassaan_CV.pdf" download
+                            aria-label="Download my CV as a PDF">Download CV</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Hassaan-Hub" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub profile (opens in a new tab)">GitHub</a>
+                    </li>
+                    <li><a href="mailto:hassaanali994@gmail.com">Email</a></li>
+                    <li>
+                        <a href="https://wa.me/923273843438" target="_blank" rel="noopener noreferrer"
+                            aria-label="WhatsApp chat (opens in a new tab)">WhatsApp</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="footer-meta">&copy; 2026 Muhammad Hassaan. All rights reserved.</p>
+                <a href="https://hassaan-tau.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    class="footer-view-cv">View portfolio</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m18 15-6-6-6 6"></path>
+        </svg>
+    </button>
+
+    <!-- ================= Project screenshot lightbox ================= -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+        <div class="lightbox-backdrop" data-lightbox-close></div>
+        <div class="lightbox-panel">
+            <div class="lightbox-head">
+                <h3 id="lightbox-title">Project</h3>
+                <div class="lightbox-head-actions">
+                    <span class="lightbox-count" id="lightbox-count"></span>
+                    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close screenshots">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 6 6 18M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="lightbox-stage">
+                <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button"
+                    aria-label="Previous screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m15 18-6-6 6-6"></path>
+                    </svg>
+                </button>
+                <img class="lightbox-img" id="lightbox-img" alt="">
+                <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button"
+                    aria-label="Next screenshot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript (shared with the portfolio: nav, lightbox, theme, etc.) -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>

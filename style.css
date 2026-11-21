@@ -1505,6 +1505,29 @@ html[data-theme="light"] .icon-moon {
 }
 
 /* ==========================================================================
+   GenAI project card — premium accent styling for the flagship project
+   ========================================================================== */
+.project-card.genai-card .project-media {
+    border-top: 2px solid;
+    border-image-source: linear-gradient(90deg, var(--accent-primary), var(--accent-cyan));
+    border-image-slice: 1;
+}
+
+/* Stronger screenshot shade so details stay legible over the AI app screenshots */
+.project-card.genai-card .shot::after {
+    opacity: 0.78;
+}
+
+.project-card.genai-card:hover .shot::after {
+    opacity: 0.92;
+}
+
+.projects-grid .project-card.genai-card:hover {
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(59, 130, 246, 0.4),
+        0 0 30px -8px rgba(34, 211, 238, 0.35);
+}
+
+/* ==========================================================================
    11. Education timeline
    ========================================================================== */
 .timeline {
@@ -2274,6 +2297,379 @@ html[data-theme="light"] .icon-moon {
 
 body.lightbox-open {
     overflow: hidden;
+}
+
+/* ==========================================================================
+   14c. GenAI case study page — shares the portfolio's design system
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.genai-hero {
+    position: relative;
+    padding: calc(var(--nav-height) + 5rem) 0 4rem;
+    overflow: hidden;
+}
+
+.genai-hero-container {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 3rem;
+}
+
+.genai-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.genai-hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 100px;
+}
+
+.genai-hero-subtitle {
+    max-width: 32rem;
+    margin-bottom: 2rem;
+    font-size: 1.06rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.genai-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.genai-hero-stack {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.genai-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.genai-orb {
+    position: relative;
+    width: min(340px, 72vw);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 25% 20%, rgba(59, 130, 246, 0.34), rgba(34, 211, 238, 0.1) 60%, transparent 72%);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-glow);
+    animation: floaty 7s ease-in-out infinite;
+}
+
+.genai-orb-inner {
+    position: absolute;
+    inset: 14%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.5) 0%, transparent 65%);
+}
+
+/* ---------- Main content ---------- */
+.genai-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+
+/* ---------- Tags, titles and text ---------- */
+.genai-tag {
+    display: inline-block;
+    margin-bottom: 0.85rem;
+    padding: 0.28rem 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    background-color: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    border-radius: 100px;
+}
+
+.genai-section-title {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 1.1rem + 1.3vw, 2rem);
+    font-weight: 800;
+}
+
+.genai-title-lg > h3 {
+    font-size: clamp(1.5rem, 1.1rem + 1.3vw, 2rem);
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.genai-content-card {
+    max-width: 46rem;
+}
+
+.genai-content-card h3 {
+    font-size: clamp(1.55rem, 1.15rem + 1.9vw, 2.25rem);
+    margin-bottom: 0.85rem;
+}
+
+.genai-content-card p {
+    margin-bottom: 0.9rem;
+}
+
+.genai-content-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Key features ---------- */
+.genai-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.genai-feature {
+    max-width: 22rem;
+    margin-inline: auto;
+}
+
+.genai-feature-tag {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+}
+
+/* ---------- Technologies ---------- */
+.genai-tech-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 1.25rem;
+}
+
+.genai-tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    padding: 0.9rem 1.1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+}
+
+.genai-tech-row dt {
+    min-width: 8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.genai-tech-row dd {
+    color: var(--text-secondary);
+}
+
+.genai-tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* ---------- AI integration flow ---------- */
+.genai-ai-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.genai-ai-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-width: 15rem;
+    padding: 1rem 1.1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+}
+
+.genai-ai-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+.genai-ai-step h4 {
+    font-size: 0.95rem;
+}
+
+.genai-ai-step p {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+}
+
+.genai-ai-arrow {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    color: var(--accent-primary);
+}
+
+.genai-ai-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ---------- Screenshot gallery ---------- */
+.gallery-note {
+    max-width: 46rem;
+    margin-bottom: 1.75rem;
+    color: var(--text-muted);
+}
+
+.genai-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+}
+
+.genai-shot {
+    display: block;
+}
+
+.genai-shot .shot {
+    cursor: zoom-in;
+}
+
+/* Case study frames stay visible (unlike the card's resting frame), with a
+   hover scale — an interactive preview without the card crossfade slideshow */
+.genai-shot .shot-frame {
+    opacity: 1;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.genai-shot .shot:hover .shot-frame {
+    transform: scale(1.03);
+}
+
+.genai-caption {
+    display: block;
+    margin-top: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* ---------- Challenges ---------- */
+.genai-challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.genai-challenge h4 {
+    font-size: 1rem;
+    margin-bottom: 0.55rem;
+}
+
+.genai-challenge p {
+    font-size: 0.9rem;
+}
+
+/* ---------- Project links ---------- */
+.genai-link-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.genai-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1.4rem;
+    color: var(--text-primary);
+}
+
+.genai-link svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    color: var(--accent-primary);
+}
+
+.genai-link:hover {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+    .genai-hero-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .genai-hero-visual .genai-orb {
+        width: min(300px, 68vw);
+    }
+}
+
+@media (max-width: 900px) {
+    .genai-ai-flow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .genai-ai-arrow {
+        transform: rotate(90deg);
+        margin-inline: auto;
+    }
+
+    .genai-ai-step {
+        max-width: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .genai-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .genai-hero-ctas {
+        width: 100%;
+    }
+
+    .genai-hero-ctas .btn {
+        width: 100%;
+    }
+
+    .genai-features .genai-feature {
+        max-width: none;
+    }
 }
 
 /* ==========================================================================

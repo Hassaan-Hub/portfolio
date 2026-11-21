@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
 /**
@@ -8,26 +10,36 @@ import { defineConfig } from 'vite';
  * ship an HTML page with no JavaScript at all.
  */
 const copyClassicScripts = (files) => ({
-  name: 'copy-classic-scripts',
-  apply: 'build',
-  generateBundle() {
-    for (const file of files) {
-      this.emitFile({
-        type: 'asset',
-        fileName: file,
-        source: fs.readFileSync(file, 'utf8'),
-      });
-    }
-  },
+    name: 'copy-classic-scripts',
+    apply: 'build',
+    generateBundle() {
+        for (const file of files) {
+            this.emitFile({
+                type: 'asset',
+                fileName: file,
+                source: fs.readFileSync(file, 'utf8'),
+            });
+        }
+    },
 });
+
+const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 // Static site: no framework plugins, no bundler magic needed.
 // `base: './'` keeps the build portable (works from a sub-path such as GitHub Pages).
 export default defineConfig({
-  base: './',
-  build: {
-    outDir: 'dist',
-    assetsInlineLimit: 0,
-  },
-  plugins: [copyClassicScripts(['script.js'])],
+    base: './',
+    build: {
+        outDir: 'dist',
+        assetsInlineLimit: 0,
+        rollupOptions: {
+            // Both HTML files are built so the GenAI case study page ships at
+            // /genai.html (Vite only discovers index.html by default).
+            input: {
+                index: path.resolve(rootDir, 'index.html'),
+                genai: path.resolve(rootDir, 'genai.html'),
+            },
+        },
+    },
+    plugins: [copyClassicScripts(['script.js'])],
 });
